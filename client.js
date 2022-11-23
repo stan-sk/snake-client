@@ -6,6 +6,7 @@ const connectionConfig = {
   host,
   port
 };
+
 // establishes a connection with the game server
 const connect = function () {
 const conn = net.createConnection(connectionConfig);
@@ -14,12 +15,17 @@ const conn = net.createConnection(connectionConfig);
 conn.setEncoding("utf8");
 
 conn.on("connect", () => {
-  console.log("you are connected to the server");
+  console.log("Successfully connected to game server");
 });
 
 conn.on("data", (data) => {
   console.log(data);
 });
+
+conn.on("connect", () => {
+  conn.write("Name: SSK");
+});
+
 
 return conn;
 };
